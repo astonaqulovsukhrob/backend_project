@@ -6,7 +6,6 @@ import cors from "cors";
 import connectDB from "./database.js";
 
 // Routes
-import usersRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
 import moduleARoute from "./routes/moduleA.js";
 import moduleBRoute from "./routes/moduleB.js";
@@ -28,7 +27,6 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
     console.log("MongoDB connected");
 
     // Routes
-    app.use("/people", usersRoutes);
     app.use("/auth", authRoutes);
     app.use("/moduleA", moduleARoute);
     app.use("/moduleB", moduleBRoute);
