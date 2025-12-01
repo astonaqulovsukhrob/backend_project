@@ -1,5 +1,5 @@
 // controllers/authController.js
-import User from "../models/user.js";
+import User from "../models/UserAuth.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -22,7 +22,11 @@ export const register = async (req, res) => {
 
     res.status(201).json({
       message: "Registration successful",
-      user,
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -40,14 +44,23 @@ export const login = async (req, res) => {
     if (!isMatch)
       return res.status(400).json({ message: "Incorrect password!" });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
 
     res.json({
       message: "Login successful",
       token,
-      userId: user._id,
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
