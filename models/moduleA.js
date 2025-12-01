@@ -8,7 +8,7 @@ const ModuleASchema = new mongoose.Schema(
     moduleB: { type: String, required: true },
     moduleC: { type: String, required: true },
     moduleD: { type: String, required: true },
-    img: { type: String, required: true },
+    img: { type: String, default: null },
   },
   { timestamps: true }
 );
