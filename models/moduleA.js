@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const ModuleASchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    title: { type: String, required: true },
+  name: { type: String, default: null },
+    title: { type: String, default: null },
     moduleA: { type: String, required: true },
     moduleB: { type: String, required: true },
     moduleC: { type: String, required: true },
